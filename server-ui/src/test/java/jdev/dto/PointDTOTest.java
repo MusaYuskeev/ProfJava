@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by jdev on 06.03.2017.
- */
 public class PointDTOTest {
 
     @Test

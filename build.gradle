@@ -45,3 +45,14 @@ project(':tracker-core') {
     }
 }
 
+project(':server-ui') {
+    dependencies {
+        compile project(':common')
+    }
+}
+
+project(':tracker-ui') {
+    dependencies {
+        compile project(':common')
+    }
+}
