@@ -42,6 +42,7 @@ public class PointDTO {
         return mapper.writeValueAsString(this);
     }
 
+
     @Override
     public String toString() {
         return "PointDTO{" +

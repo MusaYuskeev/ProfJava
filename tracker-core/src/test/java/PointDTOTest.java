@@ -16,3 +16,4 @@ public class PointDTOTest {
         System.out.println(point.toJson());
     }
 }
+
