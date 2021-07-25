@@ -14,7 +14,7 @@ public class DataStoreService {
     @Autowired
     private DataSendService dataSendService;
     private static Logger log = Logger.getLogger(gpsService.class.getName());
-    private BlockingDeque<String> store_queue = new LinkedBlockingDeque<>(10);
+    private BlockingDeque<String> store_queue = new LinkedBlockingDeque<>(100);
 
     void savePoint(BlockingDeque<String> queue) throws InterruptedException {
         while (queue.size() > 0) {
@@ -25,7 +25,7 @@ public class DataStoreService {
     }
 
     // Отправляем очередь на server-core
-    @Scheduled(fixedDelay = 3_000)
+    @Scheduled(cron = "${sendDataCron}")
     void sendData() throws InterruptedException, IOException {
         log.info("send stored queue to server");
         dataSendService.sendData(store_queue);

@@ -17,17 +17,17 @@ public class gpsService {
     private DataStoreService dataStoreService;
 
     private static Logger log = Logger.getLogger(gpsService.class.getName());
-    private BlockingDeque<String> queue = new LinkedBlockingDeque<>(10);
+    private BlockingDeque<String> queue = new LinkedBlockingDeque<>(100);
     private int count = 0;
 
     // get gps data from source (array, file etc.)
-    @Scheduled(fixedDelay = 500)
+    @Scheduled(cron = "${gpsDataCron}")
     void getPoint() throws InterruptedException, JsonProcessingException {
 
         PointDTO point = new PointDTO();
         point.setLat(56 + count);
         point.setLon(74 + count);
-        point.setAutoId(String.format("a%1$d%1$d%1$dpm", count));
+        point.setAutoId(String.format("a%1$03dpm", count));
         point.setTime(System.currentTimeMillis());
         count++;
         log.info("get new point " + count + ' ' + point.toJson());
@@ -35,7 +35,7 @@ public class gpsService {
     }
 
     //save each data point in store queue
-    @Scheduled(fixedDelay = 2000)
+    @Scheduled(cron = "${storeDataCron}")
     void storePoint() throws InterruptedException {
         log.info("store point " + count);
         dataStoreService.savePoint(queue);
