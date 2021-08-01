@@ -12,6 +12,8 @@ public class PointDTO {
     private double lon;
     private String autoId;
     private long time;
+    private double speed;
+    private double azimuth;
 
     public double getLat() {
         return lat;
@@ -58,5 +60,21 @@ public class PointDTO {
 
     public long getTime() {
         return time;
+    }
+
+    public double getAzimuth() {
+        return azimuth;
+    }
+
+    public void setAzimuth(double azimuth) {
+        this.azimuth = azimuth;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 }

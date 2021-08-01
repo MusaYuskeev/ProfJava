@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Logger;
 
+
 @Service
 public class gpsService {
+    private static final Random random = new Random();
 
     @Autowired
     private DataStoreService dataStoreService;
@@ -25,10 +28,13 @@ public class gpsService {
     void getPoint() throws InterruptedException, JsonProcessingException {
 
         PointDTO point = new PointDTO();
-        point.setLat(56 + count);
-        point.setLon(74 + count);
+//      55.344070, 86.108937 Kemerovo coordinates
+        point.setLat(55.344229 + count/100.0);
+        point.setLon(86.101544 + count/100.0);
         point.setAutoId(String.format("a%1$03dpm", count));
         point.setTime(System.currentTimeMillis());
+        point.setSpeed(100 * random.nextDouble());
+        point.setAzimuth(count);
         count++;
         log.info("get new point " + count + ' ' + point.toJson());
         queue.put(point.toJson());
