@@ -12,6 +12,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Logger;
 
 
+
 @Service
 public class gpsService {
     private static final Random random = new Random();
@@ -19,13 +20,14 @@ public class gpsService {
     @Autowired
     private DataStoreService dataStoreService;
 
-    private static Logger log = Logger.getLogger(gpsService.class.getName());
-    private BlockingDeque<String> queue = new LinkedBlockingDeque<>(100);
+     private static Logger log = Logger.getLogger(gpsService.class.getName());
+     private BlockingDeque<String> queue = new LinkedBlockingDeque<>(100);
     private int count = 0;
 
     // get gps data from source (array, file etc.)
     @Scheduled(cron = "${gpsDataCron}")
     void getPoint() throws InterruptedException, JsonProcessingException {
+
 
         PointDTO point = new PointDTO();
 //      55.344070, 86.108937 Kemerovo coordinates
