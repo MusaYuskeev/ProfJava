@@ -11,15 +11,15 @@ import java.util.logging.Logger;
 
 @Service
 public class DataStoreService {
+    private static Logger log = Logger.getLogger(gpsService.class.getName());
     @Autowired
     private DataSendService dataSendService;
-    private static Logger log = Logger.getLogger(gpsService.class.getName());
     private BlockingDeque<String> store_queue = new LinkedBlockingDeque<>(100);
 
     void savePoint(BlockingDeque<String> queue) throws InterruptedException {
         while (queue.size() > 0) {
             String poll = queue.poll();
-            log.info("Store queue:" + poll + " Store size:" + queue.size());
+            log.info("Storing in queue:" + poll + " Store size:" + queue.size());
             store_queue.put(poll);
         }
     }
@@ -27,7 +27,7 @@ public class DataStoreService {
     // Отправляем очередь на server-core
     @Scheduled(cron = "${sendDataCron}")
     void sendData() throws InterruptedException, IOException {
-        log.info("send stored queue to server");
+        log.info("Send stored queue to server");
         dataSendService.sendData(store_queue);
     }
 }
