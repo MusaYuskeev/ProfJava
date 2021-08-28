@@ -51,15 +51,18 @@ public class PointDTO {
                 "lat=" + lat +
                 ", lon=" + lon +
                 ", autoId='" + autoId + '\'' +
+                ", time=" + time +
+                ", speed=" + speed +
+                ", azimuth=" + azimuth +
                 '}';
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     public long getTime() {
         return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public double getAzimuth() {

@@ -11,17 +11,13 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Logger;
 
-
-
 @Service
 public class gpsService {
     private static final Random random = new Random();
-
+    private static Logger log = Logger.getLogger(gpsService.class.getName());
     @Autowired
     private DataStoreService dataStoreService;
-
-     private static Logger log = Logger.getLogger(gpsService.class.getName());
-     private BlockingDeque<String> queue = new LinkedBlockingDeque<>(100);
+    private BlockingDeque<PointDTO> queue = new LinkedBlockingDeque<>(100);
     private int count = 0;
 
     // get gps data from source (array, file etc.)
@@ -31,15 +27,15 @@ public class gpsService {
 
         PointDTO point = new PointDTO();
 //      55.344070, 86.108937 Kemerovo coordinates
-        point.setLat(55.344229 + count/100.0);
-        point.setLon(86.101544 + count/100.0);
+        point.setLat(55.344229 + count / 100.0);
+        point.setLon(86.101544 + count / 100.0);
         point.setAutoId(String.format("a%1$03dpm", count));
         point.setTime(System.currentTimeMillis());
         point.setSpeed(100 * random.nextDouble());
         point.setAzimuth(count);
         count++;
         log.info("get new point " + count + ' ' + point.toJson());
-        queue.put(point.toJson());
+        queue.put(point);
     }
 
     //save each data point in store queue

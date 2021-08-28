@@ -37,7 +37,7 @@ project(':server-core') {
     dependencies {
         compile project(':common')
         // https://mvnrepository.com/artifact/de.micromata.jak/JavaAPIforKml
-        compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.1'
+        //compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.1'
         compile("org.springframework.boot:spring-boot-starter-thymeleaf")
         compile("org.springframework.boot:spring-boot-devtools")
         compile group: 'commons-io', name: 'commons-io', version: '2.5'
@@ -64,12 +64,11 @@ project(':tracker-core') {
     dependencies {
         compile project(':common')
         // https://mvnrepository.com/artifact/de.micromata.jak/JavaAPIforKml
-        compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.1'
-
+        // compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.1'
 
         compile("org.springframework.boot:spring-boot-starter-thymeleaf")
         compile("org.springframework.boot:spring-boot-devtools")
-        compile project(':common')
+
         testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 

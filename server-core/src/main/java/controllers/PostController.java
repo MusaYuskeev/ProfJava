@@ -1,11 +1,13 @@
 package controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import jdev.dto.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import services.storeService;
+
+import java.io.IOException;
 
 
 @RestController
@@ -14,16 +16,13 @@ public class PostController {
     private storeService storeService;
 
     @PostMapping("/coords")
-    public Response getCoords(@RequestBody String pointdto) throws JsonProcessingException {
+    public Response getCoords(@RequestBody PointDTO pointdto) throws IOException {
         storeService.addCoord(pointdto);
-
-        Response response;
-        if (pointdto.split(",").length == 6) {
-            response = new Response(true);
+        if (pointdto != null) {
+            return new Response("ok", true);
         } else {
-            response = new Response(false);
+            return new Response("fail", false);
         }
 
-        return response;
     }
 }

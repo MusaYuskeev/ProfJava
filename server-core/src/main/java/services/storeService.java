@@ -1,16 +1,17 @@
 package services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import jdev.dto.PointDTO;
 import org.springframework.stereotype.Service;
 import server.Main;
 
+import java.util.logging.Logger;
+
 @Service
 public class storeService {
+    public static Logger log = Logger.getLogger(Main.class.getName());
 
-
-    public void addCoord(String point) throws JsonProcessingException {
-        Main.log.info("Received point: " + point);
-
+    public void addCoord(PointDTO point) {
+        log.info("Received point: " + point);
     }
 
 }

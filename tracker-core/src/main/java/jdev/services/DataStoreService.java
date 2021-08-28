@@ -1,5 +1,6 @@
 package jdev.services;
 
+import jdev.dto.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,11 @@ public class DataStoreService {
     private static Logger log = Logger.getLogger(gpsService.class.getName());
     @Autowired
     private DataSendService dataSendService;
-    private BlockingDeque<String> store_queue = new LinkedBlockingDeque<>(100);
+    private BlockingDeque<PointDTO> store_queue = new LinkedBlockingDeque<>(100);
 
-    void savePoint(BlockingDeque<String> queue) throws InterruptedException {
+    void savePoint(BlockingDeque<PointDTO> queue) throws InterruptedException {
         while (queue.size() > 0) {
-            String poll = queue.poll();
+            PointDTO poll = queue.poll();
             log.info("Storing in queue:" + poll + " Store size:" + queue.size());
             store_queue.put(poll);
         }
