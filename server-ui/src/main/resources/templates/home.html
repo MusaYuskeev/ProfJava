@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Домашняя работа №6. Spring Security</title>
+</head>
+<body>
+<h1>Доступна только авторизованным пользователям!</h1>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<p><a th:href="@{/routes}">Маршруты</a></p>
+<p><a th:href="@{/payments}">Оплаты</a></p>
+<p><a th:href="@{/registerClient}">Клиенты</a></p>
+<p><a th:href="@{/registerManager}">Менеджеры</a></p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти из системы"/>
+</form>
+
+</body>
+</html>
