@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Домашняя работа №6. Spring Security</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
 </head>
 <body>
 <h1>Доступна только авторизованным пользователям!</h1>
@@ -14,6 +15,7 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти из системы"/>
 </form>
+<img th:class="image" th:src="@{/img/java.png}"/>
 
 </body>
 </html>
