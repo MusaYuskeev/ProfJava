@@ -11,13 +11,14 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Logger;
 
 @Service
-public class DataStoreService {
+public class dataStoreService {
     private static Logger log = Logger.getLogger(gpsService.class.getName());
     @Autowired
-    private DataSendService dataSendService;
+    private dataSendService dataSendService;
+
     private BlockingDeque<PointDTO> store_queue = new LinkedBlockingDeque<>(100);
 
-    void savePoint(BlockingDeque<PointDTO> queue) throws InterruptedException {
+    void savePoints(BlockingDeque<PointDTO> queue) throws InterruptedException {
         while (queue.size() > 0) {
             PointDTO poll = queue.poll();
             log.info("Storing in queue:" + poll + " Store size:" + queue.size());
@@ -31,5 +32,7 @@ public class DataStoreService {
         log.info("Send stored queue to server");
         dataSendService.sendData(store_queue);
     }
+
+
 }
 

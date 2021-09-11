@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingDeque;
 import java.util.logging.Logger;
 
 @Service
-public class DataSendService {
+public class dataSendService {
     private static Logger log = Logger.getLogger(gpsService.class.getName());
 
     // Отправляем очередь на server-core
@@ -22,10 +22,7 @@ public class DataSendService {
             PointDTO responseData = restTemplate.postForObject("http://localhost:8080/coords", queue.poll(), PointDTO.class);
             log.info("Sent point: " + responseData + " Points to be send: " + queue.size());
         }
-
     }
-
-
 }
 
 

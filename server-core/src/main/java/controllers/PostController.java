@@ -15,6 +15,7 @@ public class PostController {
     @Autowired
     private storeService storeService;
 
+
     @PostMapping("/coords")
     public Response getCoords(@RequestBody PointDTO pointdto) throws IOException {
         storeService.addCoord(pointdto);

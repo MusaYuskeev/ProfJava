@@ -16,14 +16,13 @@ public class gpsService {
     private static final Random random = new Random();
     private static Logger log = Logger.getLogger(gpsService.class.getName());
     @Autowired
-    private DataStoreService dataStoreService;
+    private dataStoreService dataStoreService;
     private BlockingDeque<PointDTO> queue = new LinkedBlockingDeque<>(100);
     private int count = 0;
 
     // get gps data from source (array, file etc.)
     @Scheduled(cron = "${gpsDataCron}")
     void getPoint() throws InterruptedException, JsonProcessingException {
-
 
         PointDTO point = new PointDTO();
 //      55.344070, 86.108937 Kemerovo coordinates
@@ -34,7 +33,7 @@ public class gpsService {
         point.setSpeed(100 * random.nextDouble());
         point.setAzimuth(count);
         count++;
-        log.info("get new point " + count + ' ' + point.toJson());
+        log.info("get new point " + count + ' ' + point);
         queue.put(point);
     }
 
@@ -42,6 +41,6 @@ public class gpsService {
     @Scheduled(cron = "${storeDataCron}")
     void storePoint() throws InterruptedException {
         log.info("store point " + count);
-        dataStoreService.savePoint(queue);
+        dataStoreService.savePoints(queue);
     }
 }

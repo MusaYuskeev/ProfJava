@@ -4,9 +4,6 @@ package jdev.dto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * Created by jdev on 06.03.2017.
- */
 public class PointDTO {
     private double lat;
     private double lon;
@@ -43,7 +40,6 @@ public class PointDTO {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(this);
     }
-
 
     @Override
     public String toString() {

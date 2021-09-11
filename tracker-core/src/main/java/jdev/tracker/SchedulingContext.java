@@ -1,7 +1,7 @@
 package jdev.tracker;
 
-import jdev.services.DataSendService;
-import jdev.services.DataStoreService;
+import jdev.services.dataSendService;
+import jdev.services.dataStoreService;
 import jdev.services.gpsService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -24,13 +24,13 @@ public class SchedulingContext {
 
     //local service to store incoming data
     @Bean
-    DataStoreService storeService() {
-        return new DataStoreService();
+    dataStoreService storeService() {
+        return new dataStoreService();
     }
 
     //put gps data to server
     @Bean
-    DataSendService sendService() {
-        return new DataSendService();
+    dataSendService sendService() {
+        return new dataSendService();
     }
 }
