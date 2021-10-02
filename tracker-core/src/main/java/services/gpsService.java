@@ -1,4 +1,4 @@
-package jdev.services;
+package services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jdev.dto.PointDTO;
@@ -24,6 +24,7 @@ public class gpsService {
     @Scheduled(cron = "${gpsDataCron}")
     void getPoint() throws InterruptedException, JsonProcessingException {
 
+
         PointDTO point = new PointDTO();
 //      55.344070, 86.108937 Kemerovo coordinates
         point.setLat(55.344229 + count / 100.0);
@@ -33,7 +34,7 @@ public class gpsService {
         point.setSpeed(100 * random.nextDouble());
         point.setAzimuth(count);
         count++;
-        log.info("get new point " + count + ' ' + point);
+        log.info("get new point " + count + ' ' + point.toJson());
         queue.put(point);
     }
 
@@ -41,6 +42,6 @@ public class gpsService {
     @Scheduled(cron = "${storeDataCron}")
     void storePoint() throws InterruptedException {
         log.info("store point " + count);
-        dataStoreService.savePoints(queue);
+        dataStoreService.savePoint(queue);
     }
 }

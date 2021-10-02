@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="db.creation" author="musa">
+        <sql>
+
+
+            CREATE TABLE POINTS
+            (
+                ID        integer AUTO_INCREMENT PRIMARY KEY,
+                AUTO_ID   varchar(6),
+                LATITUDE  decimal(10, 6),
+                LONGITUDE decimal(10, 6),
+                TIME      decimal(13),
+                SPEED     decimal(6, 2),
+                AZIMUTH   decimal(10, 6),
+                ISSEND    boolean
+            )
+
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

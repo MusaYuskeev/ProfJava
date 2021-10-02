@@ -1,15 +1,18 @@
 package controllers;
 
-
 public class Response {
-    private String message;
-    private boolean success;
+    String message;
+    boolean success;
 
     public Response(String message, boolean success) {
         this.message = message;
         this.success = success;
     }
 
+    public Response() {
+        this.message = "";
+        this.success = false;
+    }
 
     public String getMessage() {
         return message;
@@ -26,6 +29,4 @@ public class Response {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-
-
 }

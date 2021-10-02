@@ -1,18 +1,31 @@
-package jdev.dto;
+package dao;
+
+import javax.persistence.*;
+
+import static javax.persistence.GenerationType.AUTO;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+@Entity
+@Table(name = "POINTS")
+public class Point {
 
-/**
- * Created by jdev on 06.03.2017.
- */
-public class PointDTO {
-    private double lat;
-    private double lon;
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    @Column(name = "ID")
+    private int id;
+
+    @Column(name = "AUTO_ID")
     private String autoId;
+
+    @Column(name = "LATITUDE")
+    private double lat;
+    @Column(name = "LONGITUDE")
+    private double lon;
+    @Column(name = "TIME")
     private long time;
+    @Column(name = "SPEED")
     private double speed;
+    @Column(name = "AZIMUTH")
     private double azimuth;
 
     public double getLat() {
@@ -37,24 +50,6 @@ public class PointDTO {
 
     public void setAutoId(String autoId) {
         this.autoId = autoId;
-    }
-
-    public String toJson() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(this);
-    }
-
-
-    @Override
-    public String toString() {
-        return "PointDTO{" +
-                "lat=" + lat +
-                ", lon=" + lon +
-                ", autoId='" + autoId + '\'' +
-                ", time=" + time +
-                ", speed=" + speed +
-                ", azimuth=" + azimuth +
-                '}';
     }
 
     public long getTime() {

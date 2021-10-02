@@ -1,4 +1,4 @@
-package jdev.services;
+package services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.micromata.opengis.kml.v_2_2_0.*;
@@ -17,7 +17,7 @@ public class kmlService {
 //    parseKML("tracker-core/src/main/resources/track3.klm");
 
     private Logger log = Logger.getLogger(gpsService.class.getName());
-    private BlockingDeque<PointDTO> queue = new LinkedBlockingDeque<PointDTO>(100);
+    private BlockingDeque<String> queue = new LinkedBlockingDeque<>(100);
 
     public void parseKML(String pathname) throws IOException, InterruptedException {
         File file = new File(pathname);
@@ -99,8 +99,8 @@ public class kmlService {
             point.setLon(coordinate.getLongitude());
             point.setTime(System.currentTimeMillis());
             point.setAzimuth(coordinate.getAltitude());
-            //        log.info("get new point from KML " + point.toJson());
-            queue.put(point);
+            log.info("get new point from KML " + point.toJson());
+            queue.put(point.toJson());
 
         }
     }

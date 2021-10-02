@@ -4,6 +4,7 @@ import jdev.dto.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import services.storeService;
 
@@ -17,7 +18,8 @@ public class PostController {
 
 
     @PostMapping("/coords")
-    public Response getCoords(@RequestBody PointDTO pointdto) throws IOException {
+    public @ResponseBody
+    Response getCoords(@RequestBody PointDTO pointdto) throws IOException {
         storeService.addCoord(pointdto);
         if (pointdto != null) {
             return new Response("ok", true);

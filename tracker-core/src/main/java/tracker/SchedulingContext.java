@@ -1,20 +1,17 @@
-package jdev.tracker;
+package tracker;
 
-import jdev.services.dataSendService;
-import jdev.services.dataStoreService;
-import jdev.services.gpsService;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.stereotype.Component;
+import services.dataSendService;
+import services.dataStoreService;
+import services.gpsService;
 
 @EnableScheduling
-@Configuration
+//@Configuration
 @PropertySource("classpath:/app.properties")
-@Component
-@EnableAutoConfiguration
+//@Component
+//@EnableAutoConfiguration
 public class SchedulingContext {
     //emulate work of GPS Tracker
     @Bean
