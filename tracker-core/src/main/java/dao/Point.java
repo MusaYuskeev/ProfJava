@@ -29,6 +29,10 @@ public class Point {
     @Column(name = "ISSEND")
     private boolean isSend = false;
 
+    public void wasSend(boolean send) {
+        isSend = send;
+    }
+
     public boolean isSend(boolean send) {
         return isSend;
     }

@@ -23,8 +23,6 @@ public class gpsService {
     // get gps data from source (array, file etc.)
     @Scheduled(cron = "${gpsDataCron}")
     void getPoint() throws InterruptedException, JsonProcessingException {
-
-
         PointDTO point = new PointDTO();
 //      55.344070, 86.108937 Kemerovo coordinates
         point.setLat(55.344229 + count / 100.0);
@@ -41,7 +39,6 @@ public class gpsService {
     //save each data point in store queue
     @Scheduled(cron = "${storeDataCron}")
     void storePoint() throws InterruptedException {
-        log.info("store point " + count);
-        dataStoreService.savePoint(queue);
+         dataStoreService.savePoint(queue);
     }
 }

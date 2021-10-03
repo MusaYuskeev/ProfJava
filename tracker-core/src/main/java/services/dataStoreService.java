@@ -13,13 +13,9 @@ import java.util.logging.Logger;
 @Service
 public class dataStoreService {
     private static Logger log = Logger.getLogger(gpsService.class.getName());
-    //  @Autowired
-    //  private dataSendService dataSendService;
 
     @Autowired
     PointRepository pointRepository;
-
-    //    private BlockingDeque<PointDTO> store_queue = new LinkedBlockingDeque<>(100);
 
     void savePoint(BlockingDeque<PointDTO> queue) throws InterruptedException {
         while (queue.size() > 0) {
@@ -32,7 +28,7 @@ public class dataStoreService {
             new_point.setSpeed(poll.getSpeed());
             new_point.setTime(poll.getTime());
             pointRepository.save(new_point);
-            log.info("Storing in queue:" + 1);
+
         }
     }
 
