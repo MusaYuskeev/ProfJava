@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @SpringBootApplication
-
 @ComponentScan({"server", "services", "controllers"})
 public class Main {
 

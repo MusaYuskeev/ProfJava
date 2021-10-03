@@ -1,9 +1,11 @@
 package controllers;
 
 import jdev.dto.PointDTO;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import services.storeService;
 
 import java.io.IOException;
@@ -14,10 +16,14 @@ public class PostControllerTest {
 
     @Mock
     storeService storeService;
-    ;
 
     @InjectMocks
     PostController mockedController;
+
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void getCoords() throws IOException {
