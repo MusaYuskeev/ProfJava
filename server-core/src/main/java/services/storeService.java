@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 import server.Main;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @EnableJpaRepositories("dao")
@@ -20,17 +21,18 @@ public class storeService {
     @Autowired
     PointRepository pointRepository;
 
-    public void addCoord(PointDTO point) {
-        Point new_point = new Point();
-        new_point.setAutoId(point.getAutoId());
-        new_point.setLat(point.getLat());
-        new_point.setLon(point.getLon());
-        new_point.setAzimuth(point.getAzimuth());
-        new_point.setSpeed(point.getSpeed());
-        new_point.setTime(point.getTime());
-
-
-        log.info("Received point: " + pointRepository.save(new_point));
+    public void addCoord(PointDTO pointDTO) {
+        Point point = new Point();
+        point.setAutoId(pointDTO.getAutoId());
+        point.setLat(pointDTO.getLat());
+        point.setLon(pointDTO.getLon());
+        point.setAzimuth(pointDTO.getAzimuth());
+        point.setSpeed(pointDTO.getSpeed());
+        point.setTime(pointDTO.getTime());
+        log.info("Received point: " + pointRepository.save(point));
     }
 
+    public List<Point> getTracks(String idAuto) {
+        return pointRepository.findByAuto_Id(idAuto);
+    }
 }

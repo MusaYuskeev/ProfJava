@@ -18,7 +18,7 @@
                 AUTO_ID   varchar(6),
                 LATITUDE  decimal(10, 6),
                 LONGITUDE decimal(10, 6),
-                TIME      decimal(13),
+                TIME      long,
                 SPEED     decimal(6, 2),
                 AZIMUTH   decimal(10, 6)
             )

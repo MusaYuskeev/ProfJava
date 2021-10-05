@@ -27,7 +27,7 @@ public class gpsService {
 //      55.344070, 86.108937 Kemerovo coordinates
         point.setLat(55.344229 + count / 100.0);
         point.setLon(86.101544 + count / 100.0);
-        point.setAutoId(String.format("a%1$03dpm", count));
+        point.setAutoId(String.format("a%1$03dpm", random.nextInt(10)));
         point.setTime(System.currentTimeMillis());
         point.setSpeed(100 * random.nextDouble());
         point.setAzimuth(count);
