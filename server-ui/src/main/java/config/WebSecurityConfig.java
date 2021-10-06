@@ -1,4 +1,4 @@
-package jdev.config;
+package config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/img/**").permitAll()
                 .antMatchers("/registerManager/**").hasRole("ROOT")
                 .antMatchers("/registerClient/**").hasRole("MANAGER")
-                .antMatchers("/routes/**", "/payments/**").hasRole("CLIENT")
+                .antMatchers("/tracks/**", "/payments/**").hasRole("CLIENT")
+                .antMatchers("/users/**").hasRole("CLIENT")
                 .antMatchers("/home").authenticated()
                 .antMatchers("/**").permitAll()
                 .and()

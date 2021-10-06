@@ -8,10 +8,11 @@
 <h1>Доступна только авторизованным пользователям!</h1>
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 
-<p><a th:href="@{/routes}">Маршруты</a></p>
+<p><a th:href="@{/tracks}">Маршруты</a></p>
 <p><a th:href="@{/payments}">Оплаты</a></p>
 <p><a th:href="@{/registerClient}">Клиенты</a></p>
 <p><a th:href="@{/registerManager}">Менеджеры</a></p>
+<p><a th:href="@{/users}">Пользователи</a></p>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти из системы"/>
 </form>

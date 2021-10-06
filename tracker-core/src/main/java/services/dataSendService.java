@@ -23,11 +23,10 @@ public class dataSendService {
     void sendData() throws InterruptedException, IOException {
         RestTemplate restTemplate = new RestTemplate();
 
+        //выбираем все неотправленные данные из БД
         List<Point> queue = pointRepository.findByIsSendFalse();
 
         log.info("--------->   Sending data to the server. Data count =" + queue.size());
-
-        //выбираем все данные из очереди (сохраненные данные) и отправляем на server-core
         queue.forEach(s -> {
             restTemplate.postForObject("http://localhost:8080/coords", s, Point.class);
             s.wasSend(true);

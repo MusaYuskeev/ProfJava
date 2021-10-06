@@ -55,6 +55,13 @@ project(':server-ui') {
         // tag::security[]
         compile("org.springframework.boot:spring-boot-starter-security")
         // end::security[]
+        compile("org.springframework.boot:spring-boot-devtools")
+        compile group: 'commons-io', name: 'commons-io', version: '2.5'
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        compile group: 'org.liquibase', name: 'liquibase-core', version: '3.5.3'
+        compile group: 'com.h2database', name: 'h2', version: '1.4.195'
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile group: 'org.mockito', name: 'mockito-core', version: '2.7.22'
     }
 }
 
