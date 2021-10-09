@@ -27,4 +27,16 @@ public class UserService {
     public void deleteUser(Integer id) {
         userRepository.delete(id);
     }
+
+    public User getUser(Integer id) {
+        return userRepository.findOne(id);
+    }
+
+    public User updateUser(Integer id, User request) {
+        User fromDb = getUser(id);
+        fromDb.setName(request.getName());
+        fromDb.setFullName(request.getFullName());
+        return userRepository.save(fromDb);
+    }
 }
+

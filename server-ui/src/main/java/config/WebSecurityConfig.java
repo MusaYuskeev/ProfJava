@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registerClient/**").hasRole("MANAGER")
                 .antMatchers("/tracks/**", "/payments/**").hasRole("CLIENT")
                 .antMatchers("/users/**").hasRole("CLIENT")
+                .antMatchers("/users/delete/**").hasRole("CLIENT")
                 .antMatchers("/home").authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
