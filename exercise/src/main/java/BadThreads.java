@@ -1,3 +1,6 @@
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  *
@@ -29,27 +32,42 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 public class BadThreads {
- 
+
+    private static final Lock R_LOCK = new ReentrantLock();
     static String message;
 
     public static void main(String args[]) throws InterruptedException {
 
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 1000; i++) {
             CorrectorThread correctorThread = new CorrectorThread();
+
             correctorThread.start();
             message = "Казнить";
 
-            Thread.sleep(10);
-            if (message.equalsIgnoreCase("Помиловать"))
+            //      Thread.sleep(100);
+
+
+            correctorThread.join();
+            if (message.equalsIgnoreCase("Казнить"))
                 System.out.println(message);
         }
     }
 
-    private static class CorrectorThread
-            extends Thread {
+    private static class CorrectorThread extends Thread {
 
         public void run() {
-            message = "Помиловать";
+
+            //R_LOCK.lock();
+            //synchronized (message) {
+            try {
+                message = "Помиловать";//this code will be executed in synchronization section
+            } finally {
+                //    R_LOCK.unlock();
+            }
+
+
         }
     }
+
+
 }
