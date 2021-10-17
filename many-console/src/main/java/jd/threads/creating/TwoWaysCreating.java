@@ -21,7 +21,7 @@ public class TwoWaysCreating {
         extending.run();
 
         //повторный запуск отработавшей нити - выбросит исключение
-        //extending.start();
+//        extending.start();
 
 
         ImplementingRunnable implementing = new ImplementingRunnable();

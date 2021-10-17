@@ -32,23 +32,24 @@ public class BadThreads {
  
     static String message;
 
-    private static class CorrectorThread
-        extends Thread {
- 
-        public void run() {
-           message = "Помиловать";
-        }
-    }
- 
     public static void main(String args[]) throws InterruptedException {
 
         for (int i=0; i<10; i++) {
             CorrectorThread correctorThread = new CorrectorThread();
-            message = "Казнить";
             correctorThread.start();
+            message = "Казнить";
+
             Thread.sleep(10);
-//            if (message.equalsIgnoreCase("Казнить"))
+            if (message.equalsIgnoreCase("Помиловать"))
                 System.out.println(message);
+        }
+    }
+
+    private static class CorrectorThread
+            extends Thread {
+
+        public void run() {
+            message = "Помиловать";
         }
     }
 }
