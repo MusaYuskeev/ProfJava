@@ -40,14 +40,14 @@ public class BadThreads {
 
         for (int i = 0; i < 1000; i++) {
             CorrectorThread correctorThread = new CorrectorThread();
-
-            correctorThread.start();
             message = "Казнить";
+            correctorThread.start();
+
 
             //      Thread.sleep(100);
 
 
-            correctorThread.join();
+            //           correctorThread.join();
             if (message.equalsIgnoreCase("Казнить"))
                 System.out.println(message);
         }
