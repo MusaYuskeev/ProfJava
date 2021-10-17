@@ -20,21 +20,18 @@ public class WhereIsTheMany {
 
                     System.out.println(Thread.currentThread().getName() + " start");
                     if (Math.random() * 10 / 2 > 2) {
-                        System.out.println(Thread.currentThread().getName() + " MIN_PRIORITY");
                         Thread.currentThread().setPriority(MIN_PRIORITY);
                     } else if (Math.random() * 10 / 2 < 1) {
-                        System.out.println(Thread.currentThread().getName() + " MAX_PRIORITY");
                         Thread.currentThread().setPriority(MAX_PRIORITY);
                     }
-                    System.out.println(Thread.currentThread().getName() + " start sleep");
+                    System.out.println(Thread.currentThread().getName() + " start sleep Priority: " + Thread.currentThread().getPriority());
+
                     Thread.sleep(300);
-                    System.out.println(Thread.currentThread().getName() + " end");
+                    System.out.println(Thread.currentThread().getName() + " end  Priority: " + Thread.currentThread().getPriority());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                System.out.println(Thread.currentThread().getName());
                 for (int i = 0; i < transNum; i++) {
-//                        WhereIsTheMany.account++;
                     WhereIsTheMany.account.incrementAndGet();
                 }
 
@@ -59,7 +56,5 @@ public class WhereIsTheMany {
         //удивляемся если разница не равна нулю
         if (transNum * threadNum - account.get() != 0)
             System.out.println("where is my : " + (transNum * threadNum - account.get()) + "$ !!!!!");
-//        if (transNum*threadNum - account != 0)
-//            System.out.println("where is my : " + (transNum*threadNum - account) + "$ !!!!!");
     }
 }
